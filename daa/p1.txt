@@ -1,0 +1,32 @@
+# Write a program to calculate Fibonacci numbers and find its step count
+
+arr = [0, 1]
+i = 0
+n = int(input("Enter value of n: "))
+
+while i < n-1:
+    arr.append(arr[i] + arr[i+1])
+    i += 1
+    
+print(f"Fibonacci Series: {arr}, Step count: {i}")
+
+def fib(n):
+    global step 
+    step += 1
+    
+    if n == 0: 
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fib(n-1) + fib(n-2)
+    
+def fib_series(n):
+    fib_arr = []
+    for i in range(n):
+        fib_arr.append(fib(i))
+    return fib_arr
+        
+
+step = 0
+print(f"Fibonacci Series: {fib_series(n)}, Step count: {step}")

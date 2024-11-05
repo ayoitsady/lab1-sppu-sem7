@@ -1,0 +1,44 @@
+# Write a program to solve a fractional Knapsack problem using a greedy method.
+
+items = [
+    (1, 12, 95),   # Item 1: weight=12, value=95
+    (2, 25, 125),  # Item 2: weight=25, value=125
+    (3, 15, 75),   # Item 3: weight=15, value=75
+    (4, 30, 120),  # Item 4: weight=30, value=120
+    (5, 40, 180),  # Item 5: weight=40, value=180
+    (6, 22, 110),  # Item 6: weight=22, value=110
+    (7, 18, 90),   # Item 7: weight=18, value=90
+    (8, 35, 150),  # Item 8: weight=35, value=150
+    (9, 10, 50),   # Item 9: weight=10, value=50
+    (10, 27, 140)  # Item 10: weight=27, value=140
+]
+
+capacity = 100
+
+def frac_knapsack(items, capacity):
+    total_value = 0
+    knapsack = []
+       
+    items.sort(key = lambda item: (item[2]/item[1]), reverse = True)
+    
+    remaining_capacity = capacity
+    
+    for item in items:
+        if remaining_capacity >= item[1]:
+            knapsack.append(item[0])
+            remaining_capacity -= item[1]
+            total_value += item[2]
+        else:
+            frac = remaining_capacity / item[1]
+            frac_value = frac * item[2]
+            knapsack.append(item[0])
+            total_value += frac_value
+            remaining_capacity = 0
+            break
+
+    return knapsack, total_value
+    
+full_knapsack, total_value = frac_knapsack(items, capacity)
+
+print(full_knapsack)
+print(total_value)

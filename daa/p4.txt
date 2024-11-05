@@ -1,0 +1,18 @@
+# Write a program to solve a 0-1 Knapsack problem using dynamic programming or branch and bound strategy.
+
+def knapsack(capacity, weights, values):
+    n = len(values)
+    dp = [0] * (capacity + 1)
+    
+    for i in range(n):
+        for w in range(capacity, weights[i] - 1, -1):
+            dp[w] = max(dp[w], dp[w - weights[i]] + values[i])
+            
+    return dp
+
+
+weights = [6, 5, 5]
+values = [10, 6, 6]
+capacity = 10
+
+print("Maximum value achievable:", knapsack(capacity, weights, values))
