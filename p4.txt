@@ -1,0 +1,19 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.26;
+
+contract marksManagement{
+    struct StudentInfo {
+        string name;
+        int marks;
+    }
+
+    mapping (int => StudentInfo) public stdRecords;
+
+    function addStudent (int roll, string memory name, int marks) external  {
+        stdRecords[roll] = StudentInfo(name, marks);
+    }
+    
+    function updateStudentsMarks(int marks, int roll) external {
+        stdRecords[roll].marks = marks;
+    }
+}
